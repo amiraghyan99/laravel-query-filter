@@ -2,14 +2,15 @@
 
 namespace Hayem\QueryFilter\Traits;
 
+use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pipeline\Pipeline;
 
 trait HasQueryFilters
 {
-    public function scopeFilters(Builder $builder , array $filters = []): void
+    public function scopeFilters(Builder $builder, array $filters = []): void
     {
-        app(Pipeline::class)
+        Container::getInstance()->make(Pipeline::class)
             ->send($builder)
             ->through($filters)
             ->thenReturn();

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 class ExampleQueryFilter extends AbstractQueryFilter
 {
 
-    protected function filter(Builder $query): void
+    protected function apply(Builder $query): void
     {
-        $query->where('id', 10);
+        $query->where('id', $this->getParam('id'));
     }
 }

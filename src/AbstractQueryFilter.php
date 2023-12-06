@@ -6,11 +6,37 @@ use Illuminate\Database\Eloquent\Builder;
 
 abstract class AbstractQueryFilter
 {
-    abstract protected function filter(Builder $query): void;
+    private array $params = [];
 
-    private function handle(Builder $query, $next)
+    abstract protected function apply(Builder $query): void;
+
+    public static function use(array $params = []): self
     {
-        $this->filter($query);
+        return new static($params);
+    }
+
+    private function __construct(array $params)
+    {
+        $this->params = $params;
+    }
+
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
+    public function getParam(string $key): mixed
+    {
+        if (!array_key_exists($key, $this->getParams()))
+            throw new \Exception("Key '${key}' not found in list [ " . implode(', ', array_keys($this->getParams())) . " ] " . static::class. "::class");
+
+        return $this->getParams()[$key];
+    }
+
+
+    public function handle(Builder $query, $next, ...$args)
+    {
+        $this->apply($query);
 
         return $next($query);
     }
