@@ -1,0 +1,13 @@
+{
+    "name": "hayem/laravel-query-filter",
+    "description": "This Package using Laravel Pipeline for query filter",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hayem\\QueryFilter\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
