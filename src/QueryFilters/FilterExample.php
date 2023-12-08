@@ -1,11 +1,11 @@
 <?php
 
-namespace Hayem\QueryFilter\Examples;
+namespace Hayem\QueryFilter\QueryFilters;
 
 use Hayem\QueryFilter\AbstractQueryFilter;
 use Illuminate\Database\Eloquent\Builder;
 
-class ExampleQueryFilter extends AbstractQueryFilter
+class FilterExample extends AbstractQueryFilter
 {
 
     protected function apply(Builder $query): void

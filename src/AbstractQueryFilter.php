@@ -10,15 +10,15 @@ abstract class AbstractQueryFilter
 
     abstract protected function apply(Builder $query): void;
 
-    public static function use(array $params = []): self
+    public static function use(): self
     {
-        return new static($params);
+        return new static(func_get_args());
     }
 
-    private function __construct(array $params)
-    {
-        $this->params = $params;
-    }
+//    private function __construct(array $params)
+//    {
+//        $this->params = $params;
+//    }
 
     public function getParams(): array
     {
